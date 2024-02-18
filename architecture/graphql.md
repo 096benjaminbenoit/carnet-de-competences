@@ -6,55 +6,40 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- la différence entre REST et GraphQL ❌ / ✔️
-- les besoins auxquels répond GraphQL ❌ / ✔️
+- la différence entre REST et GraphQL ✔️
+- les besoins auxquels répond GraphQL ✔️
 - la définition d'un schéma
-- Query ❌ / ✔️
-- Mutation ❌ / ✔️
-- Subscription ❌ / ✔️
+- Query ✔️
+- Mutation ✔️
+- Subscription ❌
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
-### Utilisation dans un projet ❌ / ✔️
+```
+// suppression d'un livre par son id :
+  
+  @Mutation(() => String)
+  async deleteBook(@Arg("bookId") id: number) {
+    // récupération du livre par son id
+    const book = await Book.findOne({ where: { id } });
+    // si le livre n'est pas trouvé, on renvoie une erreur
+    if (!book) throw new GraphQLError("not found");
+    // sinon, on supprime le livre
+    await book.remove();
+    return "deleted";
+  }
+```
 
-[lien github](...)
+### Utilisation dans un projet ✔️
 
-Description :
+[lien github](https://github.com/096benjaminbenoit/graphql-api-starter)
 
-### Utilisation en production si applicable❌ / ✔️
-
-[lien du projet](...)
-
-Description :
-
-### Utilisation en environement professionnel ❌ / ✔️
-
-Description :
+Description : Un projet personnel visant à créer un starter pack pour une API GrapQL.
 
 ## 🌐 J'utilise des ressources
 
-### Titre
+### Documentation officielle de GraphQL
 
-- lien
-- description
-
-## 🚧 Je franchis les obstacles
-
-### Point de blocage ❌ / ✔️
-
-Description:
-
-Plan d'action : (à valider par le formateur)
-
-- action 1 ❌ / ✔️
-- action 2 ❌ / ✔️
-- ...
-
-Résolution :
-
-## 📽️ J'en fais la démonstration
-
-- J'ai ecrit un [tutoriel](...) ❌ / ✔️
-- J'ai fait une [présentation](...) ❌ / ✔️
+- https://graphql.org/

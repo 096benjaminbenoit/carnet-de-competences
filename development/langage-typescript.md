@@ -6,53 +6,61 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- l'intéret de TypeScript dans l'IDE ❌ / ✔️
-- les types de bases ❌ / ✔️
-- comment et pourquoi étendre une interface ❌ / ✔️
-- les classes et les decorators ❌ / ✔️
+- l'intéret de TypeScript dans l'IDE ✔️
+- les types de bases ✔️
+- comment et pourquoi étendre une interface ✔️
+- les classes et les decorators ✔️
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
-### Utilisation dans un projet ❌ / ✔️
+```
+// typage d'une requête axios //
 
-[lien github](...)
+// je type mon state pour qu'il reçoit un tableau de catégories
+  const [categories, setCategories] = useState<Category[]>([]);
 
-Description :
+  useEffect(() => {
+    axios
+    // la requête doit récupérer un tableau de catégories
+      .get<Category[]>("http://localhost:4000/categories")
+      .then((res) => setCategories(res.data))
+      .catch(console.error);
+  }, []);
 
-### Utilisation en production si applicable❌ / ✔️
+  const router = useRouter();
 
-[lien du projet](...)
+    // je type les événements
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const formJSON: any = Object.fromEntries(formData.entries());
+    formJSON.price = parseFloat(formJSON.price);
 
-Description :
+    axios
+      .post("http://localhost:4000/ads", formJSON)
+      .then((res) => {
+        router.push(`/ads/${res.data.id}`);
+      })
+      .catch(console.error);
+  };
+```
 
-### Utilisation en environement professionnel ❌ / ✔️
+### Utilisation dans un projet ✔️
 
-Description :
+[lien github](https://github.com/096benjaminbenoit/graphql-api-starter)
+
+Description : Un projet personnel visant à créer un starter pack pour une API GrapQL écrit en Typescript
 
 ## 🌐 J'utilise des ressources
 
-### Titre
+### Documentation officielle Typescript
 
-- lien
-- description
+- https://www.typescriptlang.org/docs/
+- documentation officielle de Typescript
 
-## 🚧 Je franchis les obstacles
+### Tutoriel et exercices Typescript
 
-### Point de blocage ❌ / ✔️
-
-Description:
-
-Plan d'action : (à valider par le formateur)
-
-- action 1 ❌ / ✔️
-- action 2 ❌ / ✔️
-- ...
-
-Résolution :
-
-## 📽️ J'en fais la démonstration
-
-- J'ai ecrit un [tutoriel](...) ❌ / ✔️
-- J'ai fait une [présentation](...) ❌ / ✔️
+- https://www.totaltypescript.com/tutorials/beginners-typescript
+- tuto et exercice pour voir les concepts en typescript (type, interface, etc)

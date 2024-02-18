@@ -6,55 +6,71 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- l'état (_state_) pour contrôler l'affichage d'un composant ❌ / ✔️
-- les composants enfants et les _props_ qu'on leur passe ❌ / ✔️
-- le déclenchement d'instructions en fonction des actions de l'utilisateur ❌ / ✔️
-- le déclenchement d'instructions en fonction de l'étape du cycle de vie du composant ou du changement de valeur de ses props ❌ / ✔️
-- l'usage d'un reducer (_useReducer_) pour gérer un état composé dans un composant
-- l'état stocké dans un composant avec un _context provider_ et accessible dans ses descendants via `useContext` ❌ / ✔️
+- l'état (_state_) pour contrôler l'affichage d'un composant ✔️
+- les composants enfants et les _props_ qu'on leur passe ✔️
+- le déclenchement d'instructions en fonction des actions de l'utilisateur ✔️
+- le déclenchement d'instructions en fonction de l'étape du cycle de vie du composant ou du changement de valeur de ses props ✔️
+- l'usage d'un reducer (_useReducer_) pour gérer un état composé dans un composant ❌
+- l'état stocké dans un composant avec un _context provider_ et accessible dans ses descendants via `useContext` ❌
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
-### Utilisation dans un projet ❌ / ✔️
+```
+// composant React //
 
-[lien github](...)
+export default function MapInformations({ selectedFactory }) {
+    // rendu conditionnel
+  if (!selectedFactory) {
+    return (
+      <div className="text-xl text-center py-20 px-5">
+        Sélectionnez un point sur la carte pour voir les détails
+      </div>
+    );
+  }
 
-Description :
+  return (
+    <div className="bg-slate-100 p-10">
+      <div className="border-t-4 border-rose-600 bg-white h-full">
+        <h2 className="text-center text-xl font-bold py-2">
+            // récupération des données reçu d'un composant parent
+          {selectedFactory.factoryName}
+        </h2>
+        <div className="flex justify-center gap-5">
+          <FaMapMarkerAlt className="text-rose-600" />
+          <p>
+            {selectedFactory.address}, {selectedFactory.postCode}
+          </p>
+        </div>
+        // passage de props dans un composant enfant
+        <Meteo selectedFactory={selectedFactory} />
+      </div>
+    </div>
+  );
+}
+```
 
-### Utilisation en production si applicable❌ / ✔️
+### Utilisation dans un projet ✔️
 
-[lien du projet](...)
+[lien github](https://github.com/096benjaminbenoit/meteo-simplon)
 
-Description :
+Description : projet d'étude visant à intégrer dans une petit app React, une carte avec des informations dynamiques
 
-### Utilisation en environement professionnel ❌ / ✔️
+### Utilisation en production si applicable ✔️
 
-Description :
+[lien du projet](https://github.com/096benjaminbenoit/percuson-vitrine)
+
+Description : Vitrine réalisée en React et déployée dans le cadre de mon alternance
 
 ## 🌐 J'utilise des ressources
 
-### Titre
+### Documentation officielle React
 
-- lien
-- description
+- https://fr.react.dev/
+- documentation React
 
-## 🚧 Je franchis les obstacles
+### Série vidéos apprendre React
 
-### Point de blocage ❌ / ✔️
-
-Description:
-
-Plan d'action : (à valider par le formateur)
-
-- action 1 ❌ / ✔️
-- action 2 ❌ / ✔️
-- ...
-
-Résolution :
-
-## 📽️ J'en fais la démonstration
-
-- J'ai ecrit un [tutoriel](...) ❌ / ✔️
-- J'ai fait une [présentation](...) ❌ / ✔️
+- https://www.youtube.com/watch?v=hhe6Xb4Em5U&list=PLjwdMgw5TTLUEOKPg5Z5TgwAOeWkjGL69
+- série de vidéos youtube pour apprendre React

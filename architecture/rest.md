@@ -6,54 +6,56 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- les verbes HTTP ❌ / ✔️
-- les statuts HTTP ❌ / ✔️
-- les endpoints ❌ / ✔️
-- CORS ❌ / ✔️
-- la nomenclature recommandée pour les routes ❌ / ✔️
+- les verbes HTTP ✔️
+- les statuts HTTP ✔️
+- les endpoints ✔️
+- CORS ✔️
+- la nomenclature recommandée pour les routes ✔️
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
-### Utilisation dans un projet ❌ / ✔️
+```
+// récupération d'une annonce par son id :
 
-[lien github](...)
+app.get("/ads/:id", async (req: Request, res: Response) => {
+    // récupérer une annonce par son id
+  try {
+    const ad = await Ad.findOne({
+      where: { id: parseInt(req.params.id, 10) },
+      relations: { category: true, tags: true },
+    });
+    // si l'annonce n'existe pas, retourner un code 404
+    if (!ad) return res.sendStatus(404);
+    // sinon retourner l'annonce
+    res.send(ad);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+```
 
-Description :
+### Utilisation dans un projet ✔️
 
-### Utilisation en production si applicable❌ / ✔️
+[lien github](https://github.com/ComicScrip/the-good-corner-nov23/blob/crud-categories/backend/src/index.ts)
 
-[lien du projet](...)
-
-Description :
-
-### Utilisation en environement professionnel ❌ / ✔️
-
-Description :
+Description : projet en formation visant à réaliser un clone de Le Bon Coin
 
 ## 🌐 J'utilise des ressources
 
-### Titre
+### Repository de Prisma
 
-- lien
-- description
+- https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express
+- Exemple d'API REST en utilisant Express JS et l'ORM Prisma
 
-## 🚧 Je franchis les obstacles
+### HTTP Cat
 
-### Point de blocage ❌ / ✔️
+- https://http.cat/
+- Comprendre les codes HTTP avec humour
 
-Description:
+### REST API in 100s
 
-Plan d'action : (à valider par le formateur)
-
-- action 1 ❌ / ✔️
-- action 2 ❌ / ✔️
-- ...
-
-Résolution :
-
-## 📽️ J'en fais la démonstration
-
-- J'ai ecrit un [tutoriel](...) ❌ / ✔️
-- J'ai fait une [présentation](...) ❌ / ✔️
+- https://www.youtube.com/watch?v=-MTSQjw5DrM
+- Vidéo youtube expliquant le principe d'une API REST et comment l'appliquer avec Express JS

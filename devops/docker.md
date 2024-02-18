@@ -6,53 +6,63 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- la création d'une image docker ❌ / ✔️
-- l'éxécution d'un container ❌ / ✔️
-- l'orchestration de containers avec docker-compose ❌ / ✔️
-
+- la création d'une image docker ✔️
+- l'éxécution d'un container ✔️
+- l'orchestration de containers avec docker-compose ✔️
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
-### Utilisation dans un projet ❌ / ✔️
+```
+// on déclare les différents services
+services:
+    // mon service s'appelle "db", il utilise une image officielle postgres stockée dans docker hub
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    // on vérifie l'etat de la base de données
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
 
-[lien github](...)
+  // mon service s'appelle "api" et c'est mon application
+  api:
+    // si jamais la base de données n'est pas en état, l'application ne se lance pas
+    depends_on:
+      db:
+        condition: service_healthy
+    build: .
+    // je rend l'application disponible sur le port 4000
+    ports:
+      - "4000:4000"
+    // je stock les données dans un volume
+    volumes:
+      - ./src:/app/src
+```
 
-Description :
+### Utilisation dans un projet ✔️
 
-### Utilisation en production si applicable❌ / ✔️
+[lien github](https://github.com/096benjaminbenoit/graphql-api-starter)
 
-[lien du projet](...)
-
-Description :
-
-### Utilisation en environement professionnel ❌ / ✔️
-
-Description :
+Description : Un projet personnel visant à créer un starter pack pour une API GrapQL, le tout dockerisé.
 
 ## 🌐 J'utilise des ressources
 
-### Titre
+### Documentation officielle de Docker
 
-- lien
-- description
+- https://docs.docker.com/
+- documentation officielle de Docker
 
-## 🚧 Je franchis les obstacles
+### Cours de David Elbaze
 
-### Point de blocage ❌ / ✔️
+- https://delbaze.notion.site/Docker-b3778e65ac284f29a3b722a8bb93bcb9
+- cours Notion d'un des formateurs de la WildCode School
 
-Description:
+### Docker illustré
 
-Plan d'action : (à valider par le formateur)
-
-- action 1 ❌ / ✔️
-- action 2 ❌ / ✔️
-- ...
-
-Résolution :
-
-## 📽️ J'en fais la démonstration
-
-- J'ai ecrit un [tutoriel](...) ❌ / ✔️
-- J'ai fait une [présentation](...) ❌ / ✔️
+- https://www.youtube.com/watch?v=caXHwYC3tq8&t=2s
+- vidéo illustrant Docker
